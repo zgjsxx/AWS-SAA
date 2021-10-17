@@ -1,6 +1,6 @@
 # AWS-SAA
 
-[![AWS](https://img.shields.io/static/v1?label=Cloud Service&message=AWS&color=blue)](https://aws.amazon.com)
+[![AWS](https://img.shields.io/static/v1?label=CloudService&message=AWS&color=blue)](https://aws.amazon.com)
 
 This is a repo which used to pass the AWS-SAA examination
 
