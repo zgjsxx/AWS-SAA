@@ -18,6 +18,14 @@ curl http://169.254.169.254/latest/meta-data/
 
 
 
+
+
+**data transfer between EC2 in the same AZ and different AZ**
+
+Data transferred between Amazon EC2, Amazon RDS, Amazon Redshift, Amazon ElastiCache instances, and Elastic Network Interfaces in the same Availability Zone is free.
+
+![img](img/DataTransferInAZ.png)
+
 ## Amazon ELB
 
 **NLB TLS listener and certificate**
@@ -41,6 +49,30 @@ To extend the IPv4 address range of your VPC, you can add an additional IPv4 CID
 By default, a default subnet is a public subnet, because the main route table sends the subnet's traffic that is destined for the internet to the internet gateway. So the instances that you launch into a default subnet receive both a public IP address and a private IP address.
 
 
+
+**VPC Peering**
+
+- Can connect one VPC to another using AWS intranet
+- Two VPCs in the same account or different account can be connected each other.
+- Do not support VPC Transitive Peering. (VPC A -> VPC B)& (VPC B -> VPC C)  != (VPC A->VPC C)
+
+
+
+**AWS PrivateLink**
+
+AWS PrivateLink is a highly available, scalable technology that enables you to privately connect your VPC to supported AWS services, services hosted **by other AWS accounts** (VPC endpoint services), and supported AWS Marketplace partner services. You do not need to use an internet gateway, NAT device, public IP address, AWS Direct Connect connection, or AWS Site-to-Site VPN connection to communicate with the service. Therefore, your VPC is not exposed to the public internet. 
+
+
+
+**Interface endpoints**
+
+An [interface endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html)(AWS PrivateLink) is an elastic network interface with a private IP address from the IP address range of your subnet. It serves as an entry point for traffic destined to a service that is owned by AWS or owned by an AWS customer or partner. For a list of AWS services that integrate with AWS PrivateLink, see [AWS services that integrate with AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/integrated-services-vpce-list.html).
+
+**Gateway endpoints**
+
+A gateway endpoint is a gateway that is a target for a route in your route table used for traffic destined to either Amazon S3 or DynamoDB.
+
+There is no charge for using gateway endpoints.
 
 
 
@@ -87,6 +119,55 @@ https://aws.amazon.com/premiumsupport/knowledge-center/s3-website-cloudfront-err
 
 - **Standard —** Standard retrievals allow you to access any of your archives within several hours. Standard retrievals typically complete within **3–5 hours**. This is the default option for retrieval requests that do not specify the retrieval option.
 - **Bulk —** Bulk retrievals are S3 Glacier’s lowest-cost retrieval option, which you can use to retrieve large amounts, even petabytes, of data inexpensively in a day. Bulk retrievals typically complete within **5–12 hours**.
+
+
+
+## Amazon EFS
+
+**Basic knowledge of EFS**
+
+- a kind of share storage
+- can be shared by multiple EC2s
+- supports the Network File System version 4 (NFSv4.1 and NFSv4.0) protocol
+- It is built to scale on demand to PB without disrupting applications,
+- Using NFS protocol, do not support Windows System
+
+
+
+**Kinds of EFS**
+
+- **Standard storage classes** – EFS Standard and EFS Standard–Infrequent Access (Standard–IA), which offer multi-AZ resilience and the highest levels of durability and availability.
+- **One Zone storage classes** – EFS One Zone and EFS One Zone–Infrequent Access (EFS One Zone–IA), which offer customers the choice of additional savings by choosing to save their data in a single AZ’.
+
+The classification is like s3-standard, s3-standard-IA, s3-one Zone IA
+
+
+
+## AWS Storage Gateway
+
+**File Gateway**
+
+A File Gateway is a type of Storage Gateway used to integrate your existing on-premise application with the Amazon S3. It provides **NFS (Network File System) and SMB (Server Message Block)** access to data in S3 for any workloads that require working with objects.
+
+**Volume Gateway**
+
+Unlike File Gateways which are used for accessing objects, Volume Gateways present your on-premise application with the **iSCSI block storage** instead. **Volume Gateways allow you to have point-in-time backups of your volumes stored as EBS snapshots**, and come in two different operational modes: stored and cached.
+
+**Tape Gateway**
+
+Tape Gateway acts as an industry-standard iSCSI-based Virtual Tape Library (VTL). Deployed on-premise, it consist of virtual media changer and virtual tape drives, and allows you to continue to rely on your existing backup workflows.
+
+
+
+**Difference between cached volumes and storage volumes for Volume Gateway**
+
+**Cached volumes** – You store your data in Amazon Simple Storage Service (Amazon S3) and retain a copy of frequently accessed data subsets locally. Cached volumes offer a substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data.
+
+(Create cache and then write to s3, when writing to s3 succesfully, the transaction is done).
+
+**Stored volumes** – If you need low-latency access to your entire dataset, first configure your on-premises gateway to store all your data locally. Then asynchronously back up point-in-time snapshots of this data to Amazon S3. This configuration provides durable and inexpensive offsite backups that you can recover to your local data center or Amazon Elastic Compute Cloud (Amazon EC2). For example, if you need replacement capacity for disaster recovery, you can recover the backups to Amazon EC2.
+
+(Write to local data, the transaction is done. The backup progress is independent from the transaction, it will backup your local data to s3 at other time).
 
 
 
@@ -145,6 +226,16 @@ Use an active-passive failover configuration when you want a primary resource or
 [Amazon RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/) provide enhanced availability for database instances within a single AWS Region. With Multi-AZ, your data is synchronously replicated to a standby in a different Availability Zone (AZ). In the event of an infrastructure failure, Amazon RDS performs an automatic failover to the standby, minimizing disruption to your applications. 
 
 
+
+## Amazon KMS
+
+**Envelope encryption**
+
+When you encrypt your data, your data is protected, but you have to protect your encryption key. One strategy is to encrypt it. *Envelope encryption* is the practice of encrypting plaintext data with a data key, and then encrypting the data key under another key.
+
+You can even encrypt the data encryption key under another encryption key, and encrypt that encryption key under another encryption key. But, eventually, one key must remain in plaintext so you can decrypt the keys and your data. This top-level plaintext key encryption key is known as the *root key*.
+
+![img](img/EnvelopeEncryption.png)
 
 
 
