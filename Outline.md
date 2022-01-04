@@ -4,7 +4,33 @@ This outline helps to prepare to AWS SAA-C02 exam.
 
 Good luck. Hope you to pass it successfully.
 
-[TOC]
+
+- [AWS SAA-C02](#aws-saa-c02)
+  - [Amazon EC2](#amazon-ec2)
+  - [Amazon ELB](#amazon-elb)
+  - [Amazon VPC](#amazon-vpc)
+  - [Amazon ELB](#amazon-elb-1)
+  - [Amazon S3](#amazon-s3)
+  - [Amazon EFS](#amazon-efs)
+  - [AWS Storage Gateway](#aws-storage-gateway)
+  - [Amazon cloudfront](#amazon-cloudfront)
+  - [Amazon Route53](#amazon-route53)
+  - [Amazon RDS](#amazon-rds)
+  - [Amazon KMS](#amazon-kms)
+  - [Amazon DynamoDB](#amazon-dynamodb)
+  - [Amazon Gateway Load Balancer](#amazon-gateway-load-balancer)
+  - [Amazon kinesis Streams](#amazon-kinesis-streams)
+  - [Amazon snowball edge](#amazon-snowball-edge)
+  - [Amazon SNS](#amazon-sns)
+  - [Amazon Inspector](#amazon-inspector)
+  - [Amazon Elastic Fabric Adapter](#amazon-elastic-fabric-adapter)
+  - [Amazon Server Migration Service(SMS)](#amazon-server-migration-servicesms)
+  - [Amazon athena](#amazon-athena)
+  - [Amazon CloudWatch](#amazon-cloudwatch)
+  - [Amazon Kinesis Firehose](#amazon-kinesis-firehose)
+  - [Amazon Lambda](#amazon-lambda)
+  - [Amazon Macie](#amazon-macie)
+
 
 ## Amazon EC2
 
@@ -15,8 +41,6 @@ To determine your instance's public IP address, you can use the instance metadat
 ```shell
 curl http://169.254.169.254/latest/meta-data/
 ```
-
-
 
 
 
@@ -92,12 +116,6 @@ With S3 Object Lock, you can store objects using a write-once-read-many (WORM) m
 
 
 
-**S3 Glacier with standard retrieve**
-
-S3 Glacier with standard retrieve allow you to access any of your archives within several hours. Standard retrievals typically complete within 3-5 hours.
-
-
-
 **How should I choose between S3 Transfer Acceleration and Amazon CloudFront’s PUT/POST?** 
 
  S3 Transfer Acceleration optimizes the TCP protocol and  adds additional intelligence between the client and the S3 bucket,  making S3 Transfer Acceleration a better choice if a higher throughput  is desired. If you have objects that are smaller than 1GB or if the data set is less than 1GB in size, you should consider using Amazon  CloudFront's PUT/POST commands for optimal performance.
@@ -120,6 +138,13 @@ https://aws.amazon.com/premiumsupport/knowledge-center/s3-website-cloudfront-err
 - **Standard —** Standard retrievals allow you to access any of your archives within several hours. Standard retrievals typically complete within **3–5 hours**. This is the default option for retrieval requests that do not specify the retrieval option.
 - **Bulk —** Bulk retrievals are S3 Glacier’s lowest-cost retrieval option, which you can use to retrieve large amounts, even petabytes, of data inexpensively in a day. Bulk retrievals typically complete within **5–12 hours**.
 
+
+**compare with S3 Glacier and S3 Glacier Deep Archieve**
+
+|Storage class|Expedited|Standard|Bulk|
+|--|--|--|--|
+|Amazon S3 Glacier|1-5min|3-5 hours|5-12hours|
+|Amazon S3 Glacier Deep Archive|Not available|Within 12 hours|Within 48 hours|
 
 
 ## Amazon EFS
@@ -151,7 +176,8 @@ A File Gateway is a type of Storage Gateway used to integrate your existing on-p
 
 **Volume Gateway**
 
-Unlike File Gateways which are used for accessing objects, Volume Gateways present your on-premise application with the **iSCSI block storage** instead. **Volume Gateways allow you to have point-in-time backups of your volumes stored as EBS snapshots**, and come in two different operational modes: stored and cached.
+Unlike File Gateways which are used for accessing objects, Volume Gateways present your on-premise application with the **iSCSI block storage** instead. **Volume Gateways allow you to have point-in-time backups of your volumes stored as EBS snapshots**, and come in two different operational modes: stored and cached. The backup EBS snapshot is not suitable for data analyse.
+
 
 **Tape Gateway**
 
@@ -342,6 +368,23 @@ Server Migration Service (SMS) from AWS is **an agentless service that enables c
 A: yes
 
 
+## Amazon CloudWatch
+**CloudWatch Logs **
+
+You can use the CloudWatch Logs agent installer on an existing EC2 instance to install and configure the CloudWatch Logs agent. After installation is complete, logs automatically flow from the instance to the log stream you create while installing the agent. The agent confirms that it has started and it stays running until you disable it.
+
+
+## Amazon Kinesis Firehose
+**Q: Can firehose store data into DynamoDB?**
+
+A: No, there isn't a standard way of inserting Firehose stream data into DynamoDB.
+
+
+## Amazon Lambda
+**The max execution time of lambda**
+AWS Lambda enables functions that can run up to 15 minutes
+
+https://aws.amazon.com/about-aws/whats-new/2018/10/aws-lambda-supports-functions-that-can-run-up-to-15-minutes/
 
 
 
