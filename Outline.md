@@ -16,6 +16,7 @@ Good luck. Hope you to pass it successfully.
   - [Amazon cloudfront](#amazon-cloudfront)
   - [Amazon Route53](#amazon-route53)
   - [Amazon RDS](#amazon-rds)
+  - [Amazon Aurora](#amazon-aurora)
   - [Amazon KMS](#amazon-kms)
   - [Amazon DynamoDB](#amazon-dynamodb)
   - [Amazon Gateway Load Balancer](#amazon-gateway-load-balancer)
@@ -30,6 +31,7 @@ Good luck. Hope you to pass it successfully.
   - [Amazon Kinesis Firehose](#amazon-kinesis-firehose)
   - [Amazon Lambda](#amazon-lambda)
   - [Amazon Macie](#amazon-macie)
+  - [Amazon Database Migration Service](#amazon-database-migration-service)
 
 
 ## Amazon EC2
@@ -252,6 +254,20 @@ Use an active-passive failover configuration when you want a primary resource or
 [Amazon RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/) provide enhanced availability for database instances within a single AWS Region. With Multi-AZ, your data is synchronously replicated to a standby in a different Availability Zone (AZ). In the event of an infrastructure failure, Amazon RDS performs an automatic failover to the standby, minimizing disruption to your applications. 
 
 
+## Amazon Aurora
+
+**what is Amazon Aurora?**
+
+Amazon Aurora (Aurora) is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases. The code, tools, and applications you use today with your existing MySQL and PostgreSQL databases can be used with Aurora. With some workloads, Aurora can deliver up to five times the throughput of MySQL and up to three times the throughput of PostgreSQL without requiring changes to most of your existing applications. 
+
+**Overview if Amazon Aurora global databases**
+
+By using an Amazon Aurora global database, you can run your globally distributed applications using a single Aurora database that spans multiple AWS Regions.
+
+An Aurora global database consists of one primary AWS Region where your data is mastered, and up to five read-only secondary AWS Regions. You issue write operations directly to the primary DB cluster in the primary AWS Region. Aurora replicates data to the secondary AWS Regions using dedicated infrastructure, with latency typically under a second.
+
+In the following diagram, you can find an example Aurora global database that spans two AWS Regions. 
+![Aurora global databases](img/AuroraGlobalDatabases.png)
 
 ## Amazon KMS
 
@@ -393,3 +409,8 @@ https://aws.amazon.com/about-aws/whats-new/2018/10/aws-lambda-supports-functions
 **Introduction**
 
 Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
+
+## Amazon Database Migration Service
+**What is Amazon DMS**
+
+AWS Database Migration Service (AWS DMS) is a cloud service that makes it easy to migrate relational databases, data warehouses, NoSQL databases, and other types of data stores. You can use AWS DMS to migrate your data into the AWS Cloud or between combinations of cloud and on-premises setups. 
