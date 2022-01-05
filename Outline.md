@@ -32,6 +32,9 @@ Good luck. Hope you to pass it successfully.
   - [Amazon Lambda](#amazon-lambda)
   - [Amazon Macie](#amazon-macie)
   - [Amazon Database Migration Service](#amazon-database-migration-service)
+  - [IAM database authenticateion for MySQL and PostgreSQL](#iam-database-authenticateion-for-mysql-and-postgresql)
+  - [Amazon Cognito](#amazon-cognito)
+  - [Transit Gateway](#transit-gateway)
 
 
 ## Amazon EC2
@@ -148,6 +151,14 @@ https://aws.amazon.com/premiumsupport/knowledge-center/s3-website-cloudfront-err
 |Amazon S3 Glacier|1-5min|3-5 hours|5-12hours|
 |Amazon S3 Glacier Deep Archive|Not available|Within 12 hours|Within 48 hours|
 
+**Sharing an object with a presigned URL**
+
+All objects by default are private. Only the object owner has permission to access these objects. However, the object owner can optionally share objects with others by creating a presigned URL, using their own security credentials, to grant time-limited permission to download the objects.
+
+When you create a presigned URL for your object, you must provide your security credentials, specify a bucket name, an object key, the HTTP method (GET to download the object), and the expiration date and time. Presigned URLs are valid only for the specified duration.
+
+Anyone who receives the presigned URL can then access the object. For example, if you have a video in your bucket and both the bucket and the object are private, you can share the video with others by generating a presigned URL. 
+
 
 ## Amazon EFS
 
@@ -253,6 +264,10 @@ Use an active-passive failover configuration when you want a primary resource or
 
 [Amazon RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/) provide enhanced availability for database instances within a single AWS Region. With Multi-AZ, your data is synchronously replicated to a standby in a different Availability Zone (AZ). In the event of an infrastructure failure, Amazon RDS performs an automatic failover to the standby, minimizing disruption to your applications. 
 
+**What is data Pump in Oracle?**
+
+Oracle Data Pump technology enables very high-speed movement of data and metadata from one database to another
+
 
 ## Amazon Aurora
 
@@ -303,6 +318,9 @@ Provisioned mode is a good option if any of the following are true:
 - You run applications whose traffic is consistent or ramps gradually.                                                                      
 - You can forecast capacity requirements to control costs. 
 
+**Q: Does DynamoDB support in-place atomic updates?**
+
+Amazon DynamoDB supports fast in-place updates. You can increment or decrement a numeric attribute in a row usin
 
 
 ## Amazon Gateway Load Balancer
@@ -414,3 +432,20 @@ Amazon Macie is a fully managed data security and data privacy service that uses
 **What is Amazon DMS**
 
 AWS Database Migration Service (AWS DMS) is a cloud service that makes it easy to migrate relational databases, data warehouses, NoSQL databases, and other types of data stores. You can use AWS DMS to migrate your data into the AWS Cloud or between combinations of cloud and on-premises setups. 
+
+## IAM database authenticateion for MySQL and PostgreSQL
+**what is IAM database authenticateion**
+You can authenticate to your DB instance using AWS Identity and Access Management (IAM) database authentication. IAM database authentication works with MySQL and PostgreSQL. With this authentication method, you don't need to use a password when you connect to a DB instance. Instead, you use an authentication token.
+
+An authentication token is a unique string of characters that Amazon RDS generates on request. Authentication tokens are generated using AWS Signature Version 4. Each token has a lifetime of 15 minutes. You don't need to store user credentials in the database, because authentication is managed externally using IAM. You can also still use standard database authentication. The token is only used for authentication and doesn't affect the session after it is established. 
+
+## Amazon Cognito
+**what is Amazon Cognito?**
+
+Amazon Cognito provides authentication, authorization, and user management for your web and mobile apps. Your users can sign in directly with a user name and password, or through a third party such as Facebook, Amazon, Google or Apple. 
+
+
+## Transit Gateway
+**What is ECMP?**
+
+You can use equal-cost multi-path routing (ECMP) to get higher bandwidth by scaling horizontally across multiple Connect Peers of the same Connect Attachment or across multiple Connect Attachments on the same transit gateway
