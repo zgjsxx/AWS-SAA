@@ -16,12 +16,12 @@ Good luck. Hope you to pass it successfully.
   - [Amazon cloudfront](#amazon-cloudfront)
   - [Amazon Route53](#amazon-route53)
   - [Amazon RDS](#amazon-rds)
-  - [Amazon SQS](#amazon-sqs)
   - [Amazon Aurora](#amazon-aurora)
   - [Amazon KMS](#amazon-kms)
   - [Amazon DynamoDB](#amazon-dynamodb)
   - [Amazon Gateway Load Balancer](#amazon-gateway-load-balancer)
   - [Amazon kinesis Streams](#amazon-kinesis-streams)
+  - [Amazon snowball](#amazon-snowball)
   - [Amazon snowball edge](#amazon-snowball-edge)
   - [Amazon SNS](#amazon-sns)
   - [Amazon Inspector](#amazon-inspector)
@@ -36,6 +36,9 @@ Good luck. Hope you to pass it successfully.
   - [IAM database authenticateion for MySQL and PostgreSQL](#iam-database-authenticateion-for-mysql-and-postgresql)
   - [Amazon Cognito](#amazon-cognito)
   - [Transit Gateway](#transit-gateway)
+  - [Service control policies (SCPs)](#service-control-policies-scps)
+  - [VPN CloudHub](#vpn-cloudhub)
+  - [AWS import/export](#aws-importexport)
 
 
 ## Amazon EC2
@@ -223,7 +226,9 @@ Field-level encryption allows you to enable your users to securely upload sensit
 
 
 
+**Configuring caching based on the language of the viewer**
 
+If you want CloudFront to cache different versions of your objects based on the language specified in the request, configure CloudFront to forward the Accept-Language header to your origin. 
 
 
 
@@ -269,15 +274,6 @@ Use an active-passive failover configuration when you want a primary resource or
 
 Oracle Data Pump technology enables very high-speed movement of data and metadata from one database to another
 
-
-## Amazon SQS
-**what is the difference between SQS and Amazon MQ?**
-
-SQS is a simple queueing service. It doesn't support many higher level abstractions like message routing, fanouts, distribution lists etc. It is a queue - a message is produced, and a message is delivered. It is useful when you need a Queue with limited backing logic.
-
-AWS MQ is a managed Apache ActiveMQ(or RabbitMQ) broker service.
-
-This provides you a fully managed Apache ActiveMQ system in the cloud, with support for a variety of industry-standard queue and broadcast protocols like AMQP, JMS etc. It is useful when you have complicated delivery rules - or when you're migrating an existing system from outside AWS into AWS, and your systems happen to talk to one another with a standard queueing protocol.
 
 ## Amazon Aurora
 
@@ -355,7 +351,10 @@ The KPL performs the following primary tasks:
 - Integrates seamlessly with the [Kinesis Client Library](https://docs.aws.amazon.com/kinesis/latest/dev/developing-consumers-with-kcl.html) (KCL) to de-aggregate batched                                             records on the consumer                                          
 - Submits Amazon CloudWatch metrics on your behalf to provide visibility into producer                                             performance                                          
 
+## Amazon snowball
+**snowball with s3**
 
+Currently, there is no way of uploading objects directly to S3 Glacier using a Snowball Edge. Thus, you first have to upload your objects into S3 Standard, and then use S3 lifecycle policies to transition the files to S3 Glacier.
 
 ## Amazon snowball edge
 
@@ -459,3 +458,23 @@ Amazon Cognito provides authentication, authorization, and user management for y
 **What is ECMP?**
 
 You can use equal-cost multi-path routing (ECMP) to get higher bandwidth by scaling horizontally across multiple Connect Peers of the same Connect Attachment or across multiple Connect Attachments on the same transit gateway
+
+
+## Service control policies (SCPs) 
+**what is Service control policies (SCPs)**
+
+Service control policies (SCPs) are a type of organization policy that you can use to manage permissions in your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization. SCPs help you to ensure your accounts stay within your organization’s access control guidelines. SCPs are available only in an organization that has all features enabled. SCPs aren't available if your organization has enabled only the consolidated billing features. For instructions on enabling SCPs, see Enabling and disabling policy types. 
+
+
+## VPN CloudHub
+**What is VPN cloudHub**
+
+If you have multiple AWS Site-to-Site VPN connections, you can provide secure communication between sites using the AWS VPN CloudHub. This enables your remote sites to communicate with each other, and not just with the VPC. The VPN CloudHub operates on a simple hub-and-spoke model that you can use with or without a VPC. This design is suitable if you have multiple branch offices and existing internet connections and would like to implement a convenient, potentially low-cost hub-and-spoke model for primary or backup connectivity between these remote offices.
+
+The sites must not have overlapping IP ranges.
+
+## AWS import/export
+**what does it support?**
+- It can export from Amazon S3
+- It can import to s3 Glacier
+- It can import to EBS
