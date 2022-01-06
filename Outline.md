@@ -16,6 +16,7 @@ Good luck. Hope you to pass it successfully.
   - [Amazon cloudfront](#amazon-cloudfront)
   - [Amazon Route53](#amazon-route53)
   - [Amazon RDS](#amazon-rds)
+  - [Amazon SQS](#amazon-sqs)
   - [Amazon Aurora](#amazon-aurora)
   - [Amazon KMS](#amazon-kms)
   - [Amazon DynamoDB](#amazon-dynamodb)
@@ -268,6 +269,15 @@ Use an active-passive failover configuration when you want a primary resource or
 
 Oracle Data Pump technology enables very high-speed movement of data and metadata from one database to another
 
+
+## Amazon SQS
+**what is the difference between SQS and Amazon MQ?**
+
+SQS is a simple queueing service. It doesn't support many higher level abstractions like message routing, fanouts, distribution lists etc. It is a queue - a message is produced, and a message is delivered. It is useful when you need a Queue with limited backing logic.
+
+AWS MQ is a managed Apache ActiveMQ(or RabbitMQ) broker service.
+
+This provides you a fully managed Apache ActiveMQ system in the cloud, with support for a variety of industry-standard queue and broadcast protocols like AMQP, JMS etc. It is useful when you have complicated delivery rules - or when you're migrating an existing system from outside AWS into AWS, and your systems happen to talk to one another with a standard queueing protocol.
 
 ## Amazon Aurora
 
