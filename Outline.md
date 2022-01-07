@@ -39,6 +39,7 @@ Good luck. Hope you to pass it successfully.
   - [Service control policies (SCPs)](#service-control-policies-scps)
   - [VPN CloudHub](#vpn-cloudhub)
   - [AWS import/export](#aws-importexport)
+  - [Amazon EMR](#amazon-emr)
 
 
 ## Amazon EC2
@@ -107,6 +108,9 @@ A gateway endpoint is a gateway that is a target for a route in your route table
 
 There is no charge for using gateway endpoints.
 
+**what is egress only internet gateway?**
+
+An egress-only internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows outbound communication over IPv6 from instances in your VPC to the internet, and prevents the internet from initiating an IPv6 connection with your instances.
 
 
 ## Amazon ELB
@@ -478,3 +482,8 @@ The sites must not have overlapping IP ranges.
 - It can export from Amazon S3
 - It can import to s3 Glacier
 - It can import to EBS
+
+## Amazon EMR
+**VPC endpoint support EMR**
+
+You can connect directly to Amazon EMR using an interface VPC endpoint (AWS PrivateLink) in your Virtual Private Cloud (VPC) instead of connecting over the internet. When you use an interface VPC endpoint, communication between your VPC and Amazon EMR is conducted entirely within the AWS network. Each VPC endpoint is represented by one or more Elastic network interfaces (ENIs) with private IP addresses in your VPC subnets.
