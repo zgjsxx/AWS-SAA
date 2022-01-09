@@ -332,6 +332,13 @@ Provisioned mode is a good option if any of the following are true:
 
 Amazon DynamoDB supports fast in-place updates. You can increment or decrement a numeric attribute in a row usin
 
+**DynamoDB streams**
+
+DynamoDB Streams captures a time-ordered sequence of item-level modifications in any DynamoDB table and stores this information in a log for up to 24 hours. Applications can access this log and view the data items as they appeared before and after they were modified, in near-real time. 
+
+**Concurrent request**
+
+Amazon DynamoDB is a key-value and document database that delivers single-digit millisecond performance at any scale. It's a fully managed, multiregion, multimaster, durable database with built-in security, backup and restore, and in-memory caching for internet-scale applications. DynamoDB can handle more than 10 trillion requests per day and can support peaks of more than 20 million requests per second.
 
 ## Amazon Gateway Load Balancer
 
@@ -340,8 +347,6 @@ Amazon DynamoDB supports fast in-place updates. You can increment or decrement a
 Gateway Load Balancer helps you easily deploy, scale, and manage your  third-party virtual appliances. It gives you one gateway for  distributing traffic across multiple virtual appliances while scaling  them up or down, based on demand. This decreases potential points of  failure in your network and increases availability.
 
 ![GatewayLoadBalancer](img/GatewayLoadBalancer.png)
-
-
 
 ## Amazon kinesis Streams
 
